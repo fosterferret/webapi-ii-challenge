@@ -5,7 +5,7 @@ const router = express.Router();
 router.post("/", (req, res) => {
   if (!req.body.title || !req.body.contents) {
     res.status(400).json({
-      error: "Please provide the title and contents of the post."
+      message: "Please provide the title and contents of the post."
     });
   } else {
     posts
@@ -127,7 +127,7 @@ router.get("/:id/comments", (req, res) => {
 router.put("/:id", (req, res) => {
   if (!req.body.title || !req.body.contents) {
     res.status(400).json({
-      errorMessage: "Please provide title and contents for the post."
+      error: "Please provide title and contents for the post."
     });
   } else {
     posts.update(req.params.id, req.body)
