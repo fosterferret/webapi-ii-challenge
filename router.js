@@ -104,4 +104,24 @@ router.get("/:id", (req, res) => {
     );
 });
 
+router.get("/:id/comments", (req, res) => {
+  posts
+    .findPostComments(req.params.id)
+    .then(post => {
+      if (post[0]) {
+        res.status(200).json(post);
+      } else {
+        res.status(404).json({
+          message:
+            "The post with the specified ID either does not exist or currently has no comments associated with it."
+        });
+      }
+    })
+    .catch(err =>
+      res
+        .status(500)
+        .json({ error: "The comments information could not be retrieved." })
+    );
+});
+
 module.exports = router;
